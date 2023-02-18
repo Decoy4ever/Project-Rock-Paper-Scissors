@@ -13,20 +13,45 @@ function getComputerChoice()
     let randomGame = choice[index];
 
     // print out choice of the computer
+    // console.log(randomGame);
     console.log(randomGame);
 }
-
-getComputerChoice()
 
 
 // 2. Function called playRound that take two arguments playerSelection and computerSelection and plays a single round of
 // Rock, Paper and Scissors game.
-//     Use a if statement to show possible conditions
-// if (Rock > Scissors) print winner
-// if(Scissors > Paper ) print winner
-// if(Paper > Rock) print winner
 
+function playRound(playerSelection, computerSelection)
+{
+    // Use a if statement to show possible conditions
+    // if (Rock > Scissors) print winner
+    if(playerSelection === "Rock" && computerSelection === "Scissors")
+    {
+        console.log("Player Wins! Paper beats Rock")
+    }
+    // if(Scissors > Paper ) print winner
+    else if(playerSelection === "Scissors" && computerSelection === "Paper")
+    {
+        console.log("Player Wins! Scissors beat Paper")
+    }
+    // if(Paper > Rock) print winner
+    else if(playerSelection === "Paper" && computerSelection === "Rock")
+    {
+        console.log("Player Wins! Paper beat Rock")
+    }
+    else if(playerSelection === "Paper" && computerSelection === "Paper" || playerSelection === "Rock" && computerSelection === "Rock" || playerSelection === "Scissors" && computerSelection === "Scissors")
+    {
+        console.log("Its a tie");
+    }
+}
 
 // 3. Print out choice of computer
+const computerSelection = getComputerChoice();
+console.log("Computer choice: " + computerSelection)
+
 // 4. Print out choice of player
+const playerSelection = "Rock";
+console.log("Player choice: " + playerSelection)
+
 // 5. Print out the winner of the game
+console.log(playRound(playerSelection, computerSelection));
