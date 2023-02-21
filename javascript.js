@@ -11,68 +11,94 @@ function getComputerChoice()
 
     // create a var called randomGame that stores the computer choice at the random index position
     return choice[index];
-
-    // print out choice of the computer
-    //console.log(randomGame);
 }
 
 
 // 2. Function called playRound that take two arguments playerSelection and computerSelection and plays a single round of
 // Rock, Paper and Scissors game.
 
+let playerScore = 0;
+let computerScore = 0;
+
 function playRound(playerSelection, computerSelection)
 {
-
     // Use an if statement to show possible conditions if the player won
-    // if (Rock > Scissors) print winner
     if(playerSelection === "Rock" && computerSelection === "Scissors")
     {
-        console.log("Player Wins! Rock beats Scissors")
+        playerScore++;
+        console.log( "Player Wins! Rock beats Scissors. Current score is Player: " + playerScore + " Computer Score: " + computerScore);
     }
-    // if(Scissors > Paper ) print winner
     else if(playerSelection === "Scissors" && computerSelection === "Paper")
     {
-        console.log("Player Wins! Scissors beat Paper")
+        playerScore++;
+        console.log("Player Wins! Scissors beat Paper Current score is Player: " + playerScore + " Computer Score: " + computerScore);
     }
-    // if(Paper > Rock) print winner
     else if(playerSelection === "Paper" && computerSelection === "Rock")
     {
-        console.log("Player Wins! Paper beat Rock")
+        playerScore++;
+        console.log("Player Wins! Paper beat Rock Current score is Player: " + playerScore + " Computer Score: " + computerScore);
     }
-    // scenario where the computer wins
     else if(computerSelection === "Rock" && playerSelection === "Scissors")
     {
-        console.log("Computer Wins! Rock beats Scissors")
+        computerScore++;
+        console.log("Computer Wins! Rock beats Scissors Current score is Player: " + playerScore + " Computer Score: " + computerScore);
     }
-    // if(Scissors > Paper ) print winner
     else if(computerSelection === "Scissors" && playerSelection === "Paper")
     {
-        console.log("Computer Wins! Scissors beat Paper")
+        computerScore++;
+        console.log("Computer Wins! Scissors beat Paper. Score is Player Current score is Player: " + playerScore + " Computer Score: " + computerScore);
     }
-    // if(Paper > Rock) print winner
     else if(computerSelection === "Paper" && playerSelection === "Rock")
     {
-        console.log("Computer Wins! Paper beat Rock")
+        computerScore++;
+        console.log("Computer Wins! Paper beat Rock Current score is Player: " + playerScore + " Computer Score: " + computerScore);
     }
-
-    else if(playerSelection === "Paper" && computerSelection === "Paper" || playerSelection === "Rock" && computerSelection === "Rock" || playerSelection === "Scissors" && computerSelection === "Scissors")
+    else if(playerSelection === computerSelection)
     {
-        console.log("Its a tie");
-    }
-    else
-    {
-        console.log("Please select either 'Rock', 'Paper' or 'Scissors'")
+        playerScore++;
+        computerScore++;
+        console.log("Its a tie. Current Score is Player: " + playerScore + " Computer Score: "+ computerScore);
     }
 }
 
-// 3. Print out choice of computer
-const computerSelection = getComputerChoice();
-console.log("Computer choice: " + computerSelection)
+// function to create a new winner
+function winnerGame()
+{
+    if(playerScore > computerScore)
+    {
+        console.log("\n The Player has Won the game");
+    }
+    else if(playerScore < computerScore)
+    {
+        console.log("\n The Computer has Won the game");
+    }
+    else
+    {
+        console.log("Its a Tie!. Thank you for playing")
+    }
+}
 
-// 4. Print out choice of player
-const playerSelection = prompt("The choice you played is ");
+// 5. game function used to play a number of games
+function game()
+{
+    for(let i = 0; i<5; i++)
+    {
+        // 3. Print out choice of computer
+        const computerSelection = getComputerChoice();
+        console.log("Computer choice is: "+computerSelection);
 
-console.log("Player choice: " + playerSelection)
+        // 4. Print out choice of player
+        const playerSelection = prompt("The choice you played is ");
+        console.log("Player choice is: "+playerSelection);
 
-// 5. Print out the winner of the game
-console.log(playRound(playerSelection, computerSelection));
+        playRound(playerSelection, computerSelection);
+        console.log("\n");
+
+    }
+    // print winner of game
+    winnerGame();
+}
+
+game();
+
+
