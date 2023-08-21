@@ -1,6 +1,27 @@
-// 1. Create a function called getComputerChoice that handles the computer inputs random choice between Rock, Paper and
-// Scissors
+// select the button
+// use for each method to iterate through each button
+// for each one we add a 'click' listener to the playRound() with the correct playerSelection
+const btn = document.querySelectorAll('.selectButton');
+btn.forEach((button) => {
+   button.addEventListener('click',function(){
+       // if the user selected the
+       let playerChoice = "Rock";
+       if(playerChoice)
+       {
+           playRound(playerChoice, getComputerChoice());
+       }
+       else if(playerChoice === "Paper")
+       {
+           playRound(playerChoice,getComputerChoice());
+       }
+       else if(playerChoice === "Scissors")
+       {
+           playRound(playerChoice, getComputerChoice());
+       }
+   });
+});
 
+// 1. Create a function called getComputerChoice that handles the computer inputs random choice between Rock, Paper and
 function getComputerChoice()
 {
     // create an array that stores the choices
@@ -72,29 +93,28 @@ function winnerGame()
     {
         console.log("\n The Computer has Won the game");
     }
-    else
-    {
-        console.log("Its a Tie!. Thank you for playing")
-    }
+    // else if(playerScore === computerScore)
+    // {
+    //     console.log("Its a Tie!. Thank you for playing");
+    // }
 }
 
 // 5. game function used to play a number of games
 function game()
 {
-    for(let i = 0; i<5; i++)
-    {
-        // 3. Print out choice of computer
-        const computerSelection = getComputerChoice();
-        console.log("Computer choice is: "+computerSelection);
-
-        // 4. Print out choice of player
-        const playerSelection = prompt("The choice you played is ");
-        console.log("Player choice is: "+playerSelection);
-
-        playRound(playerSelection, computerSelection);
-        console.log("\n");
-
-    }
+    // for(let i = 0; i<5; i++)
+    // {
+    //     // 3. Print out choice of computer
+    //     const computerSelection = getComputerChoice();
+    //     console.log("Computer choice is: " + computerSelection);
+    //
+    //     // 4. Print out choice of player
+    //     const playerSelection = prompt("The choice you played is ");
+    //     console.log("Player choice is: " + playerSelection);
+    //
+    //     playRound(playerSelection, computerSelection);
+    //     console.log("\n");
+    // }
     // print winner of game
     winnerGame();
 }
