@@ -23,7 +23,6 @@ function playGame(){
     });
 }
 
-
 // 1. Create a function called getComputerChoice that handles the computer inputs random choice between Rock, Paper and
 function getComputerChoice()
 {
@@ -37,137 +36,58 @@ function getComputerChoice()
     return choice[index];
 }
 
-
 // 2. Function called playRound that take two arguments playerSelection and computerSelection and plays a single round of
 // Rock, Paper and Scissors game.
-
 let playerScore = 0;
 let computerScore = 0;
 
 function playRound(playerSelection, computerSelection)
 {
+    const btn = document.querySelectorAll(".selectButton");
     const divMessage = document.createElement('div');
-    const btn = document.querySelector(".selectButton");
 
     // Use an if statement to show possible conditions if the player won
-    if(playerSelection === "Rock" && computerSelection === "Scissors")
+    if(playerSelection === "Rock" && computerSelection === "Scissors" ||
+        playerSelection === "Scissors" && computerSelection === "Paper" ||
+        playerSelection === "Paper" && computerSelection === "Rock")
     {
         playerScore++;
         const msg = document.createTextNode("Player Has Won. P: " + playerScore + ' C: ' + computerScore);
         btn.appendChild(divMessage).appendChild(msg);
-        // winnerOfGame();
-        console.log( "Player Wins! Rock beats Scissors. Current score is Player: " + playerScore + " Computer Score: " + computerScore);
     }
-    else if(playerSelection === "Scissors" && computerSelection === "Paper")
-    {
-        playerScore++;
-        const msg = document.createTextNode("Player Has Won. P: " + playerScore + ' C: ' + computerScore);
-        btn.appendChild(divMessage).appendChild(msg);
-        // winnerOfGame();
-        console.log("Player Wins! Scissors beat Paper Current score is Player: " + playerScore + " Computer Score: " + computerScore);
-    }
-    else if(playerSelection === "Paper" && computerSelection === "Rock")
-    {
-        playerScore++;
-        const msg = document.createTextNode("Player Has Won. P: " + playerScore + ' C: ' + computerScore);
-        btn.appendChild(divMessage).appendChild(msg);
-        // winnerOfGame();
-        console.log("Player Wins! Paper beat Rock Current score is Player: " + playerScore + " Computer Score: " + computerScore);
-    }
-    else if(computerSelection === "Rock" && playerSelection === "Scissors")
-    {
-        const msg = document.createTextNode("Comp Has Won. P:" + playerScore + ' C: ' + computerScore);
-        btn.appendChild(divMessage).appendChild(msg);
-        computerScore++;
-        // winnerOfGame();
-        console.log("Computer Wins! Rock beats Scissors Current score is Player: " + playerScore + " Computer Score: " + computerScore);
-    }
-    else if(computerSelection === "Scissors" && playerSelection === "Paper")
+    else if(computerSelection === "Rock" && playerSelection === "Scissors" ||
+            computerSelection === "Scissors" && playerSelection === "Paper" ||
+            computerSelection === "Paper" && playerSelection === "Rock" )
     {
         computerScore++;
         const msg = document.createTextNode("Comp Has Won. P:" + playerScore + ' C: ' + computerScore);
         btn.appendChild(divMessage).appendChild(msg);
-        // winnerOfGame();
-        console.log("Computer Wins! Scissors beat Paper. Score is Player Current score is Player: " + playerScore + " Computer Score: " + computerScore);
-    }
-    else if(computerSelection === "Paper" && playerSelection === "Rock")
-    {
-        computerScore++;
-        const msg = document.createTextNode("Comp Has Won. P:" + playerScore + ' C: ' + computerScore);
-        btn.appendChild(divMessage).appendChild(msg);
-        // winnerOfGame();
-        console.log("Computer Wins! Paper beat Rock Current score is Player: " + playerScore + " Computer Score: " + computerScore);
     }
     else if(playerSelection === computerSelection)
     {
         playerScore++;
         computerScore++;
-
         const msg = document.createTextNode("It's a Tie!. P: " + playerScore + ' C: ' + computerScore );
         btn.appendChild(divMessage).appendChild(msg);
-        // winnerOfGame();
-        console.log("Its a tie. Current Score is Player: " + playerScore + " Computer Score: "+ computerScore);
     }
+    winnerGame();
 }
 
-// function winnerOfGame(){
-//     const divMessage = document.createElement('div');
-//     const btn = document.querySelector(".selectButton");
-//     // if(playerScore > computerScore)
-//     // {
-//     //     const msg = document.createTextNode("Player Has Won. P: " + playerScore + ' C: ' + computerScore);
-//     //     btn.appendChild(divMessage).appendChild(msg);
-//     // }
-//     // else if(playerScore < computerScore)
-//     // {
-//     //     const msg = document.createTextNode("Comp Has Won. P:" + playerScore + ' C: ' + computerScore);
-//     //     btn.appendChild(divMessage).appendChild(msg);
-//     // }
-//     // else
-//     // {
-//     //     const msg = document.createTextNode("It's a Tie!. P: " + playerScore + ' C: ' + computerScore );
-//     //     btn.appendChild(divMessage).appendChild(msg);
-//     // }
-// }
+function winnerGame()
+{
+    const btn = document.querySelectorAll(".selectButton");
+    const div = document.createElement('div');
 
-
-// function to create a new winner
-// function winnerGame()
-// {
-//     if(playerScore > computerScore)
-//     {
-//         // console.log("\n The Player has Won the game");
-//     }
-//     else if(playerScore < computerScore)
-//     {
-//         // console.log("\n The Computer has Won the game");
-//     }
-//     // else if(playerScore === computerScore)
-//     // {
-//     //     console.log("Its a Tie!. Thank you for playing");
-//     // }
-// }
-
-// 5. game function used to play a number of games
-// function game()
-// {
-//     // for(let i = 0; i<5; i++)
-//     // {
-//     //     // 3. Print out choice of computer
-//     //     const computerSelection = getComputerChoice();
-//     //     console.log("Computer choice is: " + computerSelection);
-//     //
-//     //     // 4. Print out choice of player
-//     //     const playerSelection = prompt("The choice you played is ");
-//     //     console.log("Player choice is: " + playerSelection);
-//     //
-//     //     playRound(playerSelection, computerSelection);
-//     //     console.log("\n");
-//     // }
-//     // print winner of game
-//     winnerGame();
-// }
-//
-// game();
+    if(playerScore === 5)
+    {
+        const winnerMsg = document.createTextNode("Player is the Overall Winner");
+        btn.appendChild(div).appendChild(winnerMsg);
+    }
+    else if(computerScore === 5)
+    {
+        const winnerMsg = document.createTextNode("Computer is the Overall Winner");
+        btn.appendChild(div).appendChild(winnerMsg);
+    }
+}
 
 playGame();
