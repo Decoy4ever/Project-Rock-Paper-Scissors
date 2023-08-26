@@ -1,7 +1,6 @@
 // select the button
 // use for each method to iterate through each button
 // for each one we add a 'click' listener to the playRound() with the correct playerSelection
-
 function playGame(){
     const btns = document.querySelectorAll('button');
     btns.forEach((button) => {
@@ -84,13 +83,13 @@ function winnerGame()
 
     if(playerScore === 5)
     {
-        const winnerMsg = document.createTextNode("Player is the Overall Winner");
+        const winnerMsg = document.createTextNode("Player is the Overall Winner. Play Again! Just refresh!");
         btn.appendChild(div).appendChild(winnerMsg);
         disableButton();
     }
     else if(computerScore === 5)
     {
-        const winnerMsg = document.createTextNode("Computer is the Overall Winner");
+        const winnerMsg = document.createTextNode("Computer is the Overall Winner. Play Again! Just refresh!");
         btn.appendChild(div).appendChild(winnerMsg);
         disableButton();
     }
