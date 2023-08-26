@@ -1,12 +1,14 @@
 // select the button
 // use for each method to iterate through each button
 // for each one we add a 'click' listener to the playRound() with the correct playerSelection
+
 function playGame(){
-    const btn = document.querySelectorAll('.selectButton');
-    btn.forEach((button) => {
+    const btns = document.querySelectorAll('button');
+    btns.forEach((button) => {
         button.addEventListener('click',function(){
-            // if the user selected the
+
             let playerChoice = "Rock";
+
             if(playerChoice)
             {
                 playRound(playerChoice, getComputerChoice());
@@ -40,11 +42,13 @@ function getComputerChoice()
 // Rock, Paper and Scissors game.
 let playerScore = 0;
 let computerScore = 0;
+// const btn = document.querySelector(".selectButton");
+// const div = document.createElement('div');
 
 function playRound(playerSelection, computerSelection)
 {
-    const btn = document.querySelectorAll(".selectButton");
-    const divMessage = document.createElement('div');
+    const btn = document.querySelector(".selectButton");
+    const div = document.createElement('div');
 
     // Use an if statement to show possible conditions if the player won
     if(playerSelection === "Rock" && computerSelection === "Scissors" ||
@@ -53,7 +57,7 @@ function playRound(playerSelection, computerSelection)
     {
         playerScore++;
         const msg = document.createTextNode("Player Has Won. P: " + playerScore + ' C: ' + computerScore);
-        btn.appendChild(divMessage).appendChild(msg);
+        btn.appendChild(div).appendChild(msg);
     }
     else if(computerSelection === "Rock" && playerSelection === "Scissors" ||
             computerSelection === "Scissors" && playerSelection === "Paper" ||
@@ -61,33 +65,43 @@ function playRound(playerSelection, computerSelection)
     {
         computerScore++;
         const msg = document.createTextNode("Comp Has Won. P:" + playerScore + ' C: ' + computerScore);
-        btn.appendChild(divMessage).appendChild(msg);
+        btn.appendChild(div).appendChild(msg);
     }
     else if(playerSelection === computerSelection)
     {
         playerScore++;
         computerScore++;
-        const msg = document.createTextNode("It's a Tie!. P: " + playerScore + ' C: ' + computerScore );
-        btn.appendChild(divMessage).appendChild(msg);
+        const msg = document.createTextNode("It's a Tie!. P: " + playerScore + ' C: ' + computerScore);
+        btn.appendChild(div).appendChild(msg);
     }
     winnerGame();
 }
 
 function winnerGame()
 {
-    const btn = document.querySelectorAll(".selectButton");
+    const btn = document.querySelector(".selectButton");
     const div = document.createElement('div');
 
     if(playerScore === 5)
     {
         const winnerMsg = document.createTextNode("Player is the Overall Winner");
         btn.appendChild(div).appendChild(winnerMsg);
+        disableButton();
     }
     else if(computerScore === 5)
     {
         const winnerMsg = document.createTextNode("Computer is the Overall Winner");
         btn.appendChild(div).appendChild(winnerMsg);
+        disableButton();
     }
+}
+
+// disable the buttons when user play 5 times
+function disableButton(){
+    const btns = document.querySelectorAll('button');
+    btns.forEach((button) => {
+            button.disabled = true;
+    });
 }
 
 playGame();
