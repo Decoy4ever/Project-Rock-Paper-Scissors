@@ -1,6 +1,30 @@
-// 1. Create a function called getComputerChoice that handles the computer inputs random choice between Rock, Paper and
-// Scissors
+// select the button
+// use for each method to iterate through each button
+// for each one we add a 'click' listener to the playRound() with the correct playerSelection
+function playGame(){
+    const btns = document.querySelectorAll('button');
+    btns.forEach((button) => {
+        button.addEventListener('click',function(){
 
+            let playerChoice = "Rock";
+
+            if(playerChoice)
+            {
+                playRound(playerChoice, getComputerChoice());
+            }
+            else if(playerChoice === "Paper")
+            {
+                playRound(playerChoice,getComputerChoice());
+            }
+            else if(playerChoice === "Scissors")
+            {
+                playRound(playerChoice, getComputerChoice());
+            }
+        });
+    });
+}
+
+// 1. Create a function called getComputerChoice that handles the computer inputs random choice between Rock, Paper and
 function getComputerChoice()
 {
     // create an array that stores the choices
@@ -13,92 +37,70 @@ function getComputerChoice()
     return choice[index];
 }
 
-
 // 2. Function called playRound that take two arguments playerSelection and computerSelection and plays a single round of
 // Rock, Paper and Scissors game.
-
 let playerScore = 0;
 let computerScore = 0;
+// const btn = document.querySelector(".selectButton");
+// const div = document.createElement('div');
 
 function playRound(playerSelection, computerSelection)
 {
+    const btn = document.querySelector(".selectButton");
+    const div = document.createElement('div');
+
     // Use an if statement to show possible conditions if the player won
-    if(playerSelection === "Rock" && computerSelection === "Scissors")
+    if(playerSelection === "Rock" && computerSelection === "Scissors" ||
+        playerSelection === "Scissors" && computerSelection === "Paper" ||
+        playerSelection === "Paper" && computerSelection === "Rock")
     {
         playerScore++;
-        console.log( "Player Wins! Rock beats Scissors. Current score is Player: " + playerScore + " Computer Score: " + computerScore);
+        const msg = document.createTextNode("Player Has Won. P: " + playerScore + ' C: ' + computerScore);
+        btn.appendChild(div).appendChild(msg);
     }
-    else if(playerSelection === "Scissors" && computerSelection === "Paper")
-    {
-        playerScore++;
-        console.log("Player Wins! Scissors beat Paper Current score is Player: " + playerScore + " Computer Score: " + computerScore);
-    }
-    else if(playerSelection === "Paper" && computerSelection === "Rock")
-    {
-        playerScore++;
-        console.log("Player Wins! Paper beat Rock Current score is Player: " + playerScore + " Computer Score: " + computerScore);
-    }
-    else if(computerSelection === "Rock" && playerSelection === "Scissors")
+    else if(computerSelection === "Rock" && playerSelection === "Scissors" ||
+            computerSelection === "Scissors" && playerSelection === "Paper" ||
+            computerSelection === "Paper" && playerSelection === "Rock" )
     {
         computerScore++;
-        console.log("Computer Wins! Rock beats Scissors Current score is Player: " + playerScore + " Computer Score: " + computerScore);
-    }
-    else if(computerSelection === "Scissors" && playerSelection === "Paper")
-    {
-        computerScore++;
-        console.log("Computer Wins! Scissors beat Paper. Score is Player Current score is Player: " + playerScore + " Computer Score: " + computerScore);
-    }
-    else if(computerSelection === "Paper" && playerSelection === "Rock")
-    {
-        computerScore++;
-        console.log("Computer Wins! Paper beat Rock Current score is Player: " + playerScore + " Computer Score: " + computerScore);
+        const msg = document.createTextNode("Comp Has Won. P:" + playerScore + ' C: ' + computerScore);
+        btn.appendChild(div).appendChild(msg);
     }
     else if(playerSelection === computerSelection)
     {
         playerScore++;
         computerScore++;
-        console.log("Its a tie. Current Score is Player: " + playerScore + " Computer Score: "+ computerScore);
+        const msg = document.createTextNode("It's a Tie!. P: " + playerScore + ' C: ' + computerScore);
+        btn.appendChild(div).appendChild(msg);
     }
-}
-
-// function to create a new winner
-function winnerGame()
-{
-    if(playerScore > computerScore)
-    {
-        console.log("\n The Player has Won the game");
-    }
-    else if(playerScore < computerScore)
-    {
-        console.log("\n The Computer has Won the game");
-    }
-    else
-    {
-        console.log("Its a Tie!. Thank you for playing")
-    }
-}
-
-// 5. game function used to play a number of games
-function game()
-{
-    for(let i = 0; i<5; i++)
-    {
-        // 3. Print out choice of computer
-        const computerSelection = getComputerChoice();
-        console.log("Computer choice is: "+computerSelection);
-
-        // 4. Print out choice of player
-        const playerSelection = prompt("The choice you played is ");
-        console.log("Player choice is: "+playerSelection);
-
-        playRound(playerSelection, computerSelection);
-        console.log("\n");
-
-    }
-    // print winner of game
     winnerGame();
 }
 
-game();
+function winnerGame()
+{
+    const btn = document.querySelector(".selectButton");
+    const div = document.createElement('div');
 
+    if(playerScore === 5)
+    {
+        const winnerMsg = document.createTextNode("Player is the Overall Winner. Play Again! Just refresh!");
+        btn.appendChild(div).appendChild(winnerMsg);
+        disableButton();
+    }
+    else if(computerScore === 5)
+    {
+        const winnerMsg = document.createTextNode("Computer is the Overall Winner. Play Again! Just refresh!");
+        btn.appendChild(div).appendChild(winnerMsg);
+        disableButton();
+    }
+}
 
+// disable the buttons when user play 5 times
+function disableButton(){
+    const btns = document.querySelectorAll('button');
+    btns.forEach((button) => {
+            button.disabled = true;
+    });
+}
+
+playGame();
